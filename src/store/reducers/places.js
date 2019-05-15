@@ -1,13 +1,10 @@
 import { 
     ADD_PLACE,
-    DELETE_PLACE,
-    SELECT_PLACE,
-    DESELECT_PLACE
+    DELETE_PLACE
 } from '../actions/actionTypes'
 
 const initialState = {
-    places: [],
-    selectedPlace: null
+    places: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,36 +16,21 @@ const reducer = (state = initialState, action) => {
                     key: Math.random().toString(),
                     value: action.placeName,
                     image: {
-                        uri: 'https://res.cloudinary.com/teepublic/image/private/s--ZuSXviSZ--/t_Preview/b_rgb:191919,c_limit,f_jpg,h_630,q_90,w_630/v1519368586/production/designs/2388108_0.jpg'
+                        uri: "https://freerangestock.com/sample/78746/halloween-cat-icon-means-trick-or-treat-and-autumn.jpg"
                     }
                 })
             }
-            case DELETE_PLACE:
+        
+        case DELETE_PLACE:
             return{
                 ...state,
                 places: state.places.filter(place => {
-                    return place.key !== state.selectedPlace.key
-                }),
-                selectedPlace: null
-            }
-
-        case SELECT_PLACE:
-            return {
-                ...state,
-                selectedPlace: state.places.find(place => {
-                    return place.key === action.placeKey
+                    return place.key !== action.placeKey
                 })
             }
-
-        case DESELECT_PLACE:
-            return {
-                ...state,
-                selectedPlace: null
-}
         default:
             return state
     }
 }
 
 export default reducer
-

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {View, TextInput, Button, StyleSheet} from 'react-native'
+import {View, TextInput, Button, StyleSheet, TouchableOpacity} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 class PlaceInput extends Component{
     state = {
@@ -18,9 +19,9 @@ class PlaceInput extends Component{
                     onChangeText = {this.placeNameChangedHandler}
                     style={styles.placeInput}
                 />
-                <Button
-                    style={styles.Button} title='Add'
-                    onPress={() => {this.props.onAddPlace(this.state.placeName)}}
+                <Icon
+                    name="md-add" size={40} style={styles.placeButton}
+                    onPress={() => {this.props.onPlaceAdded(this.state.placeName)}}
                 />
             </View>
         )
@@ -38,7 +39,8 @@ const styles = StyleSheet.create({
         width: '70%'
     },
     placeButton: {
-        width:'30%'
+        width:'30%',
+        textAlign:'center'        
     }
 })
 
